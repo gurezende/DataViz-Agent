@@ -4,6 +4,8 @@ Welcome to the **Data Analyst App** – a Streamlit-powered web application that
 
 ---
 
+![](img/a_modern_data_analyst_working_on_a.jpeg)
+
 ## 📌 Project Description
 
 This app leverages the **Gemini LLM** through the **Agno agentic framework**, alongside visualization tools, to automate the process of data analysis and reporting. Once you upload a dataset, the app:
