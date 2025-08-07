@@ -1,0 +1,13 @@
+[project]
+name = "agnodataviz"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "agno>=1.7.8",
+    "google-genai>=1.29.0",
+    "matplotlib>=3.10.5",
+    "pandas>=2.3.1",
+    "streamlit>=1.48.0",
+]

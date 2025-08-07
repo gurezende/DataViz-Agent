@@ -1,0 +1,52 @@
+import os
+import json
+from dotenv import load_dotenv
+load_dotenv()
+
+import pandas as pd
+from agno.agent import Agent
+from agno.models.google import Gemini
+from agno.tools.visualization import VisualizationTools
+from pathlib import Path
+
+
+# Load data Function
+def load_data(file_path):
+    """
+    Load data from a given CSV file path and convert it to a JSON string of records.
+
+    Parameters
+    ----------
+    file_path : str
+        The path to the CSV file to load.
+
+    Returns
+    -------
+    str
+        A JSON string of records representing the data in the CSV file.
+    """
+    
+    return pd.read_csv(file_path).to_json(orient="records")
+
+# Create an agent with visualization capabilities
+viz_agent = Agent(
+    model=Gemini(id="gemini-2.0-flash", api_key=os.environ.get("GEMINI_API_KEY")),
+    tools=[VisualizationTools(output_dir="charts")],
+    instructions=[
+        "You are a data visualization expert and business analyst.",
+        "Read the data from using the load_data tool.",
+        "Create a report for the data in context {dataset}.",
+        "Suggest the most appropriate charts and graphs based on the provided data"
+        "Create up to 5 charts for each data set.",
+        "To create charts, use the 'VisualizationTools' available.",
+        "Always provide meaningful titles, axis labels, and context.",
+        "For each chart, suggest insights based on the data visualized.",
+        "Format data appropriately for each chart type.",
+    ],
+    context={"dataset": load_data(Path("./data/financial_sample.csv"))},
+    add_context=True,
+    show_tool_calls=True,
+    markdown=True,
+)
+
+viz_agent.print_response("Create a report for the data in context.")
