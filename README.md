@@ -18,6 +18,11 @@ Perfect for analysts, business users, and anyone who wants **automated explorato
 
 ---
 
+## App
+
+Access the app here:<br>
+https://dataviz-agent.streamlit.app/
+
 ## 🛠 Requirements
 
 - Python 3.8+
